@@ -1,0 +1,21 @@
+uuid: 15d9f2b2-c521-4206-ba88-ebcd4b61838c
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: moderation_dashboard
+label: 'Moderation Dashboard'
+description: ''
+use_admin_theme: true
+path: /admin/moderation-dashboard
+access_logic: and
+access_conditions:
+  -
+    id: user_role
+    roles:
+      administrator: administrator
+    negate: false
+    context_mapping:
+      user: current_user
+parameters: {  }

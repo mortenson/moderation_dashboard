@@ -1,0 +1,21 @@
+.moderation-dashboard {
+  display: flex;
+}
+
+.moderation-dashboard-region-left,
+.moderation-dashboard-region-middle,
+.moderation-dashboard-region-right {
+  flex-grow: 1;
+  width: 33%;
+  padding: .5rem;
+}
+
+.moderation-dashboard .views-field-revision-uid,
+.moderation-dashboard .views-field-uid {
+  float: left;
+  margin-right: .5rem;
+}
+
+.moderation-dashboard canvas::selection {
+  background: none;
+}

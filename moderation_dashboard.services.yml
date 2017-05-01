@@ -1,0 +1,4 @@
+services:
+  moderation_dashboard.views_data:
+    class: \Drupal\moderation_dashboard\ViewsData
+    arguments: ['@entity_type.manager', '@workbench_moderation.moderation_information']
