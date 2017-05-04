@@ -10,8 +10,8 @@ activity:
     js/moderation_dashboard_activity.js: {}
   dependencies:
     - moderation_dashboard/chart.js
-    - drupal/jquery
-    - drupal/jquery.once
+    - core/jquery
+    - core/jquery.once
 
 chart.js:
   remote: https://github.com/chartjs/Chart.js
