@@ -43,11 +43,10 @@ class ModerationDashboardActivity extends BlockBase {
     ];
     foreach ($users as $uid => $user) {
       $data['labels'][] = $user->label();
-      $hue = rand(128,255);
       $data['datasets'][0]['data'][] = isset($results1[$uid]['count']) ? $results1[$uid]['count'] : 0;
-      $data['datasets'][0]['backgroundColor'][] = 'rgba(' . rand(0,56) . ',' . rand(0,56) . ',' . $hue . ',.8)';
+      $data['datasets'][0]['backgroundColor'][] = 'rgba(11,56,223,.8)';
       $data['datasets'][1]['data'][] = isset($results2[$uid]['count']) ? $results2[$uid]['count'] : 0;
-      $data['datasets'][1]['backgroundColor'][] = 'rgba(' . rand(0,56) . ',' . $hue . ',' . rand(0,56) . ',.8)';
+      $data['datasets'][1]['backgroundColor'][] = 'rgba(27,223,9,.8)';
     }
     $build = [
       '#type' => 'container',
