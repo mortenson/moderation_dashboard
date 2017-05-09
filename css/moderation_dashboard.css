@@ -20,20 +20,33 @@
   background: none;
 }
 
-.moderation-dashboard .block {
+.moderation-dashboard .moderation-dashboard-block {
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .25rem;
   margin-bottom: 1rem;
 }
 
-.moderation-dashboard .block > h2 {
+.moderation-dashboard .moderation-dashboard-block > h2 {
   background-color: #f7f7f9;
   border-bottom: 1px solid rgba(0,0,0,.125);
   margin: 0;
   font-weight: normal;
+  text-align: left;
+  font-size: 1.3rem;
 }
 
-.moderation-dashboard .block > h2,
-.moderation-dashboard .block > div {
+.moderation-dashboard .moderation-dashboard-block > h2,
+.moderation-dashboard .moderation-dashboard-block > div {
   padding: .75rem;
+}
+
+.moderation-dashboard nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.moderation-dashboard nav li {
+  margin-right: 1rem;
 }

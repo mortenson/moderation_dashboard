@@ -2,6 +2,7 @@
 
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\ContentEntityTypeInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_views_data().
@@ -47,5 +48,33 @@ function moderation_dashboard_preprocess_views_view(&$variables) {
     if ($view->getCurrentPage() === 0 && $view->total_rows < $view->getItemsPerPage()) {
       $variables['pager'] = [];
     }
+  }
+}
+
+/**
+ * Implements hook_toolbar().
+ */
+function moderation_dashboard_toolbar_alter(&$items) {
+  $user = \Drupal::currentUser();
+
+  if (isset($items['user']) && $user->hasPermission('use moderation dashboard')) {
+    $items['user']['tray']['user_links']['#links']['moderation_dashboard_link'] = [
+      'title' => t('Moderation Dashboard'),
+      'url' => Url::fromRoute('page_manager.page_view_moderation_dashboard_moderation_dashboard-panels_variant-0', ['user' => $user->id()]),
+      'attributes' => [
+        'title' => t('View the Moderation Dashboard page'),
+      ],
+    ];
+  }
+
+  return $items;
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function moderation_dashboard_preprocess_block(&$variables) {
+  if (\Drupal::routeMatch()->getRouteName() === 'page_manager.page_view_moderation_dashboard_moderation_dashboard-panels_variant-0') {
+    $variables['attributes']['class'][] = 'moderation-dashboard-block';
   }
 }

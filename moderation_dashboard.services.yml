@@ -1,4 +1,5 @@
 services:
-  moderation_dashboard.views_data:
-    class: \Drupal\moderation_dashboard\ViewsData
-    arguments: ['@entity_type.manager', '@workbench_moderation.moderation_information']
+  moderation_dashboard.route_subscriber:
+    class: \Drupal\moderation_dashboard\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
