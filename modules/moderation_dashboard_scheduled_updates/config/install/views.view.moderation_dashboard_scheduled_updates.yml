@@ -7,7 +7,7 @@ dependencies:
     - scheduled_updates
     - user
 _core:
-  default_config_hash: N1eiPFNQB8CCiaiht_aAc1VcSU_f5c0iXjfnWFpvZug
+  default_config_hash: gy1emsEjRcI0DRAMw8ugbovIMqWA9ub6-Gb8EYcwDiY
 id: moderation_dashboard_scheduled_updates
 label: 'Moderation Dashboard Scheduled Updates'
 module: views
@@ -319,18 +319,7 @@ display:
           text: 'View update details'
           entity_type: scheduled_update
           plugin_id: entity_link
-      filters:
-        status:
-          value: '1'
-          table: node_field_data
-          field: status
-          plugin_id: boolean
-          entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-          group: 1
+      filters: {  }
       sorts:
         created:
           id: created
@@ -365,11 +354,20 @@ display:
             format: rich_text
           plugin_id: text
       relationships:
+        latest_revision__node:
+          id: latest_revision__node
+          table: workbench_revision_tracker
+          field: latest_revision__node
+          relationship: none
+          group_type: group
+          admin_label: 'Content latest revision'
+          required: true
+          plugin_id: standard
         scheduled_update:
           id: scheduled_update
-          table: node__scheduled_update
+          table: node_revision__scheduled_update
           field: scheduled_update
-          relationship: none
+          relationship: latest_revision__node
           group_type: group
           admin_label: 'scheduled_update: Scheduled update'
           required: true
