@@ -1,9 +1,13 @@
 <?php
 
 /**
+ * @file Contains install routines for the moderation_dashboard module.
+ */
+
+/**
  * Implements hook_install().
  */
-function moderation_dashboard_scheduled_updates_install () {
+function moderation_dashboard_scheduled_updates_install() {
   if (!\Drupal::isConfigSyncing()) {
     $config = \Drupal::configFactory()
       ->getEditable('page_manager.page_variant.moderation_dashboard-panels_variant-0');

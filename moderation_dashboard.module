@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file Contains hooks for the moderation_dashboard module.
+ */
+
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\ContentEntityTypeInterface;
 use Drupal\Core\Url;
@@ -11,7 +15,7 @@ function moderation_dashboard_views_data() {
   $data = [];
 
   $manager = \Drupal::entityTypeManager();
-  /** @var ContentEntityTypeInterface[] $entity_types */
+  /** @var \Drupal\Core\Entity\ContentEntityTypeInterface[] $entity_types */
   $entity_types = array_filter($manager->getDefinitions(), function (EntityTypeInterface $entity_type) {
     return (
       $entity_type instanceof ContentEntityTypeInterface &&
