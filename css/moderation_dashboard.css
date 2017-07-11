@@ -2,12 +2,28 @@
   display: flex;
 }
 
-.moderation-dashboard-region-left,
-.moderation-dashboard-region-middle,
-.moderation-dashboard-region-right {
+.moderation-dashboard-region {
   flex-grow: 1;
   width: 33%;
-  padding: .5rem;
+  margin: .5rem;
+}
+
+.moderation-dashboard-region:first-child {
+  margin-left: 0;
+}
+
+.moderation-dashboard-region:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 850px) {
+  .moderation-dashboard {
+    display: block;
+  }
+  .moderation-dashboard-region {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 .moderation-dashboard .views-field-revision-uid,
