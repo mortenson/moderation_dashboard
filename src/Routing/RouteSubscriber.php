@@ -17,6 +17,7 @@ class RouteSubscriber extends RouteSubscriberBase {
   protected function alterRoutes(RouteCollection $collection) {
     if ($route = $collection->get('page_manager.page_view_moderation_dashboard_moderation_dashboard-panels_variant-0')) {
       $route->setRequirement('_permission', 'use moderation dashboard');
+      $route->setRequirement('_custom_access', 'moderation_dashboard_page_access');
     }
   }
 

@@ -4,6 +4,7 @@
  * @file Contains hooks for the moderation_dashboard module.
  */
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\ContentEntityTypeInterface;
 use Drupal\Core\Url;
@@ -81,4 +82,28 @@ function moderation_dashboard_preprocess_block(&$variables) {
   if (\Drupal::routeMatch()->getRouteName() === 'page_manager.page_view_moderation_dashboard_moderation_dashboard-panels_variant-0') {
     $variables['attributes']['class'][] = 'moderation-dashboard-block';
   }
+}
+
+/**
+ * Custom access callback for our page manager page.
+ *
+ * If no Content Type has moderation enabled, users cannot the dashboard.
+ */
+function moderation_dashboard_page_access() {
+  /** @var \Drupal\workbench_moderation\ModerationInformation $information */
+  $information = \Drupal::service('workbench_moderation.moderation_information');
+  /** @var \Drupal\Core\Entity\EntityTypeBundleInfo $bundle_info */
+  $bundle_info = \Drupal::service('entity_type.bundle.info');
+  $entity_type = \Drupal::entityTypeManager()->getDefinition('node');
+  $moderation_enabled = FALSE;
+  foreach ($bundle_info->getBundleInfo('node') as $bundle => $info) {
+    if ($information->isModeratableBundle($entity_type, $bundle)) {
+      $moderation_enabled = TRUE;
+      break;
+    }
+  }
+  // Workbench moderation is lazy and only creates this table when an entity
+  // is created. D'oh!
+  $table_exists = \Drupal::database()->schema()->tableExists('workbench_revision_tracker');
+  return AccessResult::allowedIf($moderation_enabled && $table_exists);
 }
